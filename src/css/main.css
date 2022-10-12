@@ -30,6 +30,10 @@ img {
   margin-right: auto;
 }
 
+.btn:enabled, .btn:disabled{
+  display: block;
+}
+
 .button.is-hidden {
   display: none;
 }

@@ -1,25 +1,49 @@
+import articlesTpl from './templates/articlesTpl.hbs';
 import './css/main.css';
 import NewsApiService from './js/news-service';
+import LoadMoreBtn from './js/load-more-btn';
 
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
-  articleContainer: document.querySelector('.js-articles-container'),
-  loadMore: document.querySelector('[data-action="load-more"]'),
+  articlesContainer: document.querySelector('.js-articles-container'),
 };
 
+const loadMoreBtn = new LoadMoreBtn({
+  selector: '[data-action="load-more"]',
+  hidden: true,
+});
 const newsApiService = new NewsApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMore.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', fetchArticles);
 
 function onSearch(e) {
   e.preventDefault();
 
   newsApiService.query = e.currentTarget.elements.query.value;
 
-  newsApiService.fetchArticles();
+  if (newsApiService.query === '') {
+    return alert('Введи параметр запроса');
+  }
+
+  loadMoreBtn.show();
+  newsApiService.resetPage();
+  clearArticlesContainer();
+  fetchArticles();
 }
 
-function onLoadMore() {
-  newsApiService.fetchArticles();
+function fetchArticles() {
+  loadMoreBtn.disable();
+  newsApiService.fetchArticles().then(articles => {
+    appendArticlesMarkup(articles);
+    loadMoreBtn.enable();
+  });
+}
+
+function appendArticlesMarkup(articles) {
+  refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpl(articles));
+}
+
+function clearArticlesContainer() {
+  refs.articlesContainer.innerHTML = '';
 }
