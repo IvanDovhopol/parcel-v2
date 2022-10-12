@@ -1,58 +1,83 @@
-// //TODO: GET стандартный запрос на сервер
+const BASE_URL = 'http://localhost:7070';
 
-// const postId = 1;
+//TODO: GET стандартный запрос на сервер
 
-// fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
-//   .then(r => r.json())
-//   .then(console.log)
-//   .catch(console.log);
+// function fetchPosts() {
+//   fetch(`${BASE_URL}/posts`)
+//     .then(response => response.json())
+//     .catch(console.log);
+// }
 
-// //TODO: POST запрос на сервер
+// function fetchPostById(id) {
+//   fetch(`${BASE_URL}/posts/${id}`)
+//     .then(response => response.json())
+//     .catch(console.log);
+// }
 
-// const postToAdd = {
-//   author: 'Mango',
-//   body: 'CRUD is awesome',
+// fetchPosts();
+
+//TODO: POST запрос на сервер
+
+// function addPost(post) {
+//   const options = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(post),
+//   };
+
+//   return fetch(`${BASE_URL}/posts`, options).then(response => response.json());
+// }
+
+// const newPost = {
+//   userId: 11,
+//   title: 'test title - 1)',
+//   body: 'test text - 1',
 // };
 
-// const options = {
-//   method: 'POST',
-//   body: JSON.stringify(postToAdd),
-//   headers: {
-//     'Content-Type': 'application/json; charset=UTF-8',
+// const newPost2 = {
+//   userId: 11,
+//   title: 'test title - 2 )',
+//   body: 'test text - 2',
+// };
+
+// addPost(newPost).then(console.log);
+// addPost(newPost2).then(console.log);
+
+//TODO: PATCH запрос на сервер
+
+// function updatePostById(update, postId) {
+//   const url = `${BASE_URL}/posts/${postId}`;
+//   const options = {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(update),
+//   };
+
+//   return fetch(url, options)
+//     .then(r => r.json())
+//     .then(console.log);
+// }
+
+// updatePostById(
+//   {
+//     body: 'kyky',
 //   },
-// };
+//   103
+// );
 
-// fetch(`https://jsonplaceholder.typicode.com/posts`, options)
-//   .then(r => r.json())
-//   .then(console.log)
-//   .catch(console.log);
+//TODO: DELETE запрос на сервер
 
-// //TODO: PATCH запрос на сервер
+// function removePost(postId) {
+//   const url = `${BASE_URL}/posts/${postId}`;
+//   const options = {
+//     method: 'DELETE',
+//   };
 
-// const postToUpdate = {
-//   id: 1,
-//   body: 'Hello world',
-// };
+//   fetch(url, options).then(r => r.json());
+// }
 
-// const options2 = {
-//   method: 'PATCH',
-//   body: JSON.stringify(postToUpdate),
-//   headers: {
-//     'Content-Type': 'application/json; charset=UTF-8',
-//   },
-// };
-
-// fetch(`https://jsonplaceholder.typicode.com/posts/${postToUpdate.id}`, options2)
-//   .then(r => r.json())
-//   .then(console.log)
-//   .catch(error => console.log('ERROR' + error));
-
-// //TODO: DELETE запрос на сервер
-
-// const postIdToDelete = 1;
-
-// fetch(`https://jsonplaceholder.typicode.com/posts/${postIdToDelete}`, {
-//   method: 'DELETE',
-// })
-//   .then(() => console.log('Post deleted'))
-//   .catch(error => console.log('Error:', error));
+// removePost(103);

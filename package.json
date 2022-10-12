@@ -4,8 +4,9 @@
   "description": "",
   "homepage": "https://IvanDovhopol.github.io/parcel-v2",
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-v2/"
+    "start": "parcel src/*.html -p 4032",
+    "build": "parcel build src/*.html --public-url /parcel-v2/",
+    "server": "json-server --watch db.json -p 7070"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
+    "json-server": "^0.17.0",
     "parcel": "^2.6.0",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-reporter-clean-dist": "^1.0.4",
